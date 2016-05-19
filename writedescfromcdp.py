@@ -25,6 +25,12 @@ if username == "" or password == "" or enable_secret == "":
     print('username, password or enable_secret cannot be empty. Please enter valid credentials!!!')
     sys.exit()
 
+if os.path.isdir(os.getcwd()+'/temps/'):
+    pass
+else:
+    print('The "temps" folder is not exists. Script will create automatically.')
+    os.system('mkdir '+os.getcwd()+'/temps/')
+
 def get_cdp_neighbors(ip, username, password, enable_secret):
     ssh_connection = ConnectHandler(
         device_type = 'cisco_ios',
