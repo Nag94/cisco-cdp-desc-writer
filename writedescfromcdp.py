@@ -27,6 +27,7 @@ if username == "" or password == "" or enable_secret == "":
 
 if os.path.isdir(os.getcwd()+'/temps/'):
     pass
+
 else:
     print('The "temps" folder is not exists. Script will create automatically.')
     os.system('mkdir '+os.getcwd()+'/temps/')

@@ -29,6 +29,7 @@ if username == "" or password == "" or enable_secret == "":
 
 if os.path.isdir(os.getcwd()+'/temps/'):
     pass
+
 else:
     print('The "temps" folder is not exists. Script will create automatically.')
     os.system('mkdir '+os.getcwd()+'/temps/')
@@ -68,6 +69,7 @@ def write_descr(ip, username, password, enable_secret, localint, descr):
 for ip in ciscoips:
     get_cdp_neighbors(ip, username, password, enable_secret)
     ctfls = os.popen('cat temps/'+ip+' | grep / | wc -l').read()
+
     for i in range(1, int(ctfls)+1):
         descr = os.popen('cat temps/'+ip+' | grep -A 1 "bvim.lan" | awk \'NR%2{printf $0" ";next;}1\' | tail -n '+str(i)+' | awk -F\' \' \'BEGIN{OFS="-"} {print $1,$8,$9}\'').readline().strip()
         localint = os.popen('cat temps/'+ip+'| grep -A 1 "bvim.lan" | awk \'NR%2{printf $0" ";next;}1\' | tail -n '+str(i)+' | awk \'{print $2,$3}\'').readline().strip()
